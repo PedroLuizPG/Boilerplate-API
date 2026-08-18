@@ -1,19 +1,27 @@
 import fastify from 'fastify'
 import { z } from 'zod'
 import { env } from './config/env.js'
-import { ZodTypeProvider, serializerCompiler, validatorCompiler } from 'fastify-type-provider-zod'
+import {
+  ZodTypeProvider,
+  serializerCompiler,
+  validatorCompiler
+} from 'fastify-type-provider-zod'
 import { registerSwagger } from './plugins/swagger.js'
+import { taskRoutes } from './modules/Tasks/task.routes.js'
 
 export async function buildApp() {
-  const app = fastify({ logger: true })
-  app.get('/health', async () => {
-    return { status: 'ok' }
-  })
+  const app = fastify({ logger: false }).withTypeProvider<ZodTypeProvider>()
 
   app.setValidatorCompiler(validatorCompiler)
   app.setSerializerCompiler(serializerCompiler)
 
   await registerSwagger(app)
+
+  app.register(taskRoutes)
+
+  // app.get('/health', async () => {
+  //   return { status: 'ok' }
+  // })
 
   app.setErrorHandler((error, _req, res) => {
     if (error instanceof z.ZodError) {
