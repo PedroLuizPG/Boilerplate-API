@@ -5,7 +5,7 @@ export interface Task {
   created_at: string
 }
 
-export interface CrateTaskInput {
+export interface CreateTaskInput {
   title: string
 }
 
@@ -16,10 +16,14 @@ export interface UpdateTaskInput {
 
 // Interface que o Service depende — não a implementação concreta.
 // Isso é o que permite trocar SQLite/Postgres/Prisma sem mexer no Service.
+// Métodos assíncronos por CONTRATO, não porque o SQLite precise disso
+// (leia a explicação logo abaixo, antes do Repository) — é o que garante
+// que essa interface sirva pra qualquer banco, sem o Service precisar mudar
+
 export interface TaskRepository {
-  findAll(): Task[]
-  findById(id: number): Task | null
-  create(data: CrateTaskInput): Task
-  update(id: number, data: UpdateTaskInput): Task | null
-  delete(id: number): boolean
+  findAll(): Promise<Task[]>;
+  findById(id: number): Promise<Task | null>;
+  create(data: CreateTaskInput): Promise<Task>;
+  update(id: number, data: UpdateTaskInput): Promise<Task | null>;
+  delete(id: number): Promise<boolean>;
 }
