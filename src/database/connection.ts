@@ -1,5 +1,8 @@
-import Database from 'better-sqlite3'
-import { env } from '@/config/env.js'
+import { Pool } from "pg";
+import { env } from "../config/env.js";
 
-export const db = new Database(env.DATABASE_URL)
-db.pragma('journal_mode = WAL')
+export const pool = new Pool({
+  connectionString: env.DATABASE_URL, 
+  // ex: postgres://user:pass@localhost:5432/mydb
+  //postgres://USUARIO:SENHA@HOST:PORTA/NOME_DO_BANCO
+});

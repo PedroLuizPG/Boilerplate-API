@@ -4,7 +4,7 @@ import type {
   CreateTaskInput,
   UpdateTaskInput
 } from './task.entity.js'
-import { SqliteTaskRepository } from './task.repository.js'
+// import { SqliteTaskRepository } from './task.repository.js'
 
 export class TaskService {
   // Injeção de dependência via construtor — o Service não sabe
