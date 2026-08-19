@@ -1,5 +1,5 @@
 import type { FastifyInstance } from 'fastify'
-import { SqliteTaskRepository } from './task.repository.js'
+// import { SqliteTaskRepository } from './task.repository.js'
 import { TaskService } from './task.service.js'
 import { TaskController } from './task.controller.js'
 import {
@@ -8,11 +8,12 @@ import {
   taskParamsSchema,
   taskResponseSchema
 } from './task.schema.js'
+import { PostgresTaskRepository } from './task.repository.postgres.js'
 
 export async function taskRoutes(app: FastifyInstance) {
   // "Composition root": aqui é o único lugar onde as camadas são conectadas.
 
-  const repository = new SqliteTaskRepository()
+  const repository = new PostgresTaskRepository()
   const service = new TaskService(repository)
   const controller = new TaskController(service)
 

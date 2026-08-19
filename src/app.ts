@@ -12,9 +12,9 @@ import { AppError } from './shared/errors/app-error.js'
 
 export async function buildApp() {
   const app = fastify({
-    logger: {
-      level: env.NODE_ENV === 'production' ? 'error' : 'info'
-    }
+    // logger: {
+    //   // level: env.NODE_ENV === 'production' ? 'error' : 'info'
+    // }
   }).withTypeProvider<ZodTypeProvider>()
 
   app.setValidatorCompiler(validatorCompiler)
