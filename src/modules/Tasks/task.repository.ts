@@ -25,7 +25,7 @@ function toTask(row: TaskRow): Task {
   }
 }
 
-export class SqliteTaskRepository {
+export class SqliteTaskRepository implements TaskRepository {
   // async aqui é só pra bater com o contrato da interface — por dentro,
   // o better-sqlite3 continua rodando tudo de forma síncrona e instantânea.
   async findAll(): Promise<Task[]> {
@@ -59,7 +59,7 @@ export class SqliteTaskRepository {
     }
   }
 
-  async update(id: number, data: UpdateTaskInput) {
+  async update(id: number, data: UpdateTaskInput): Promise<Task | null> {
     const current = await this.findById(id)
     if (!current) {
       return null
@@ -79,5 +79,15 @@ export class SqliteTaskRepository {
       throw err
     }
     return await this.findById(id)
+  }
+
+  async delete(id: number): Promise<boolean> {
+    try {
+      const result = db.prepare('DELETE FROM tasks where id = ?').run(id)
+      return result.changes > 0
+    } catch (err: any) {
+      console.log(err)
+      throw err
+    }
   }
 }

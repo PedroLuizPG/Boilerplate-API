@@ -16,12 +16,12 @@ export async function taskRoutes(app: FastifyInstance) {
   const service = new TaskService(repository)
   const controller = new TaskController(service)
 
-  app.get('/tasks', {
+  app.get('/', {
     schema: { response: { 200: taskResponseSchema.array() }, tags: ['tasks'] },
     handler: controller.findAll
   })
 
-  app.get('/tasks/:id', {
+  app.get('/:id', {
     schema: {
       params: taskParamsSchema,
       response: { 200: taskResponseSchema },
@@ -30,7 +30,7 @@ export async function taskRoutes(app: FastifyInstance) {
     handler: controller.findById
   })
 
-  app.post('/tasks', {
+  app.post('/', {
     schema: {
       body: createTaskSchema,
       response: { 201: taskResponseSchema },
@@ -39,7 +39,7 @@ export async function taskRoutes(app: FastifyInstance) {
     handler: controller.create
   })
 
-  app.put('/tasks/:id', {
+  app.put('/:id', {
     schema: {
       params: taskParamsSchema,
       body: updateTaskSchema,
@@ -47,5 +47,13 @@ export async function taskRoutes(app: FastifyInstance) {
       tags: ['tasks']
     },
     handler: controller.update
+  })
+
+  app.delete('/:id', {
+    schema: {
+      params: taskParamsSchema,
+      tags: ['tasks']
+    },
+    handler: controller.delete
   })
 }

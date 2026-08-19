@@ -1,5 +1,11 @@
 import 'dotenv/config'
+// import dotenv from 'dotenv'
 import { z } from 'zod'
+
+// Carrega .env.test quando NODE_ENV=test, senão o .env normal
+// dotenv.config({
+//   path: process.env.NODE_ENV === 'test' ? '.env.test' : '.env'
+// })
 
 const envSchema = z.object({
   NODE_ENV: z

@@ -34,4 +34,11 @@ export class TaskController {
     const task = await this.taskService.update(id, body)
     return res.status(200).send(task)
   }
+
+  delete = async (req: FastifyRequest, res: FastifyReply) => {
+    const { id } = taskParamsSchema.parse(req.params)
+    await this.taskService.delete(id)
+
+    return res.status(204).send()
+  }
 }
