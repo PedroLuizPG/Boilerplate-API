@@ -13,4 +13,4 @@ Setup Boilerplate para desenvolvimento de APIs REST utilizando:
 
 ## Database
 
-O projeto utiliza **SQLite** como banco de dados e **SQL puro** para todas as operações, **sem utilização de ORM**.
+O projeto utiliza **PostgreSQL** como banco de dados e **SQL puro** para todas as operações, **sem utilização de ORM**.
