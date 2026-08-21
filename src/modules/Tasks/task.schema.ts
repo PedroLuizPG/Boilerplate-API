@@ -17,5 +17,5 @@ export const taskResponseSchema = z.object({
   id: z.number(),
   title: z.string(),
   done: z.boolean(),
-  created_at: z.string()
+  created_at: z.date()
 })

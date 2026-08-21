@@ -2,7 +2,7 @@ export interface Task {
   id: number
   title: string
   done: boolean
-  created_at: string
+  created_at: Date
 }
 
 export interface CreateTaskInput {
@@ -21,9 +21,9 @@ export interface UpdateTaskInput {
 // que essa interface sirva pra qualquer banco, sem o Service precisar mudar
 
 export interface TaskRepository {
-  findAll(): Promise<Task[]>;
-  findById(id: number): Promise<Task | null>;
-  create(data: CreateTaskInput): Promise<Task>;
-  update(id: number, data: UpdateTaskInput): Promise<Task | null>;
-  delete(id: number): Promise<boolean>;
+  findAll(): Promise<Task[]>
+  findById(id: number): Promise<Task | null>
+  create(data: CreateTaskInput): Promise<Task>
+  update(id: number, data: UpdateTaskInput): Promise<Task | null>
+  delete(id: number): Promise<boolean>
 }

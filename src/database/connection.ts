@@ -1,8 +1,20 @@
-import { Pool } from "pg";
-import { env } from "../config/env.js";
+import 'dotenv/config'
+import { PrismaPg } from '@prisma/adapter-pg'
+import { PrismaClient } from '../generated/prisma/client.js'
 
-export const pool = new Pool({
-  connectionString: env.DATABASE_URL, 
-  // ex: postgres://user:pass@localhost:5432/mydb
-  //postgres://USUARIO:SENHA@HOST:PORTA/NOME_DO_BANCO
-});
+// const connectionString = `${process.env.DATABASE_URL}`
+// const adapter = new PrismaPg({ connectionString })
+// const prisma = new PrismaClient({ adapter })
+
+// export { prisma }
+
+class PrismaService extends PrismaClient {
+  constructor() {
+    const connectionString = `${process.env.DATABASE_URL}`
+    const adapter = new PrismaPg({ connectionString })
+    super({ adapter })
+  }
+}
+
+
+export const prisma = new PrismaService()

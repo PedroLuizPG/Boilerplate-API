@@ -8,12 +8,13 @@ import {
   taskParamsSchema,
   taskResponseSchema
 } from './task.schema.js'
-import { PostgresTaskRepository } from './task.repository.postgres.js'
+import { PrismaTaskRepository } from './task.respository.prisma.js'
+// import { PostgresTaskRepository } from './__task.repository.postgres.js'
 
 export async function taskRoutes(app: FastifyInstance) {
   // "Composition root": aqui é o único lugar onde as camadas são conectadas.
 
-  const repository = new PostgresTaskRepository()
+  const repository = new PrismaTaskRepository()
   const service = new TaskService(repository)
   const controller = new TaskController(service)
 
