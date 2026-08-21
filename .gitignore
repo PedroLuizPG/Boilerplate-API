@@ -1,4 +1,27 @@
 node_modules
 .env
 .env.test
+.env.local
 /generated/prisma
+
+# pasta de dados/volume do banco
+data/
+
+# build/output (se tiver)
+dist/
+build/
+
+# logs
+*.log
+npm-debug.log*
+
+# cobertura de testes
+coverage/
+
+# arquivos de IDE/editor
+.vscode/
+.idea/
+
+# arquivos de SO
+.DS_Store
+Thumbs.db
