@@ -16,42 +16,9 @@ Durante a evolução do projeto, foi realizada a migração do banco de dados de
 
 ---
 
-## 🔄 Por que migrar?
+## 🔄 Por que do projeto?
 
-O SQLite é uma excelente opção para prototipagem rápida, aplicações locais e ambientes simples. Porém, conforme a aplicação cresce, algumas limitações podem se tornar relevantes.
-
-### Concorrência
-
-O SQLite possui limitações relacionadas a múltiplas operações simultâneas de escrita, o que pode se tornar um gargalo em APIs com maior volume de requisições.
-
-### Escalabilidade
-
-O PostgreSQL foi projetado para ambientes de produção, oferecendo suporte a múltiplos usuários, maiores volumes de dados, conexões simultâneas e estratégias de replicação.
-
-### Recursos avançados
-
-O PostgreSQL oferece recursos mais avançados, como:
-
-* Tipos de dados mais ricos
-* Constraints robustas
-* Transações complexas
-* `JSONB`
-* Full-text search
-* Extensões
-* Índices avançados
-
-### Ecossistema
-
-O PostgreSQL possui amplo suporte no mercado e está disponível em diversos serviços de infraestrutura e cloud, como:
-
-* Railway
-* Neon
-* Supabase
-* AWS RDS
-
-Isso facilita o deploy e permite que a aplicação evolua para ambientes mais robustos.
-
----
+Este projeto foi feito para estudos e se aprofundar mais em conceitos de backend, onde foi documentado todos os passos para começar a criar uma Api REST
 
 ## 🛠️ O que mudou?
 
